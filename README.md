@@ -19,6 +19,7 @@ Git Hub Repository List Application is a simple MVVM pattern application with Si
 
 - Single Activity
 - MVVM Pattern
+- Clean Code
 
 <img src="/images/architecture-diagram.png" width="320">
 
