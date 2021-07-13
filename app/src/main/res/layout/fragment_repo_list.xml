@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.adesso.ghrepolist.scene.repolist.RepoListViewModel" />
+
+        <variable
+            name="gitHubRepoAdapter"
+            type="com.adesso.ghrepolist.scene.repolist.RepoListAdapter" />
+
+        <import type="android.view.View"/>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/repo_list_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/design_default_color_primary">
+
+            <TextView
+                style="@style/BoldText.White.Large"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_extra_large"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:text="@string/home_text"/>
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/repo_list_user_name_edit_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@+id/repo_list_submit_button"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/repo_list_toolbar"
+            android:layout_marginTop="@dimen/margin_extra_large"
+            android:layout_marginStart="@dimen/margin_extra_large"
+            android:layout_marginEnd="@dimen/margin_extra_large"
+            android:text="@={viewModel.userName}"
+            android:hint="@string/user_name_text"
+            android:autofillHints="Username"
+            android:inputType="" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/repo_list_submit_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_extra_large"
+            android:layout_marginEnd="@dimen/margin_extra_large"
+            android:layout_marginTop="@dimen/margin_extra_large"
+            android:layout_below="@+id/repo_list_toolbar"
+            android:layout_alignParentEnd="true"
+            android:text="@string/submit_text"
+            android:onClick="@{() -> viewModel.onSubmitButtonClicked()}"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_git_hub_repos"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/repo_list_user_name_edit_text"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:layout_marginBottom="@dimen/margin_medium"
+            android:layout_marginStart="@dimen/margin_extra_large"
+            android:layout_marginEnd="@dimen/margin_extra_large"
+            app:adapter="@{gitHubRepoAdapter}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:submitList="@{viewModel.repoModelItemList}"
+            tools:listitem="@layout/item_git_hub_repo" />
+
+    </RelativeLayout>
+
+
+</layout>

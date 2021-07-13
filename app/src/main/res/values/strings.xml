@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">GitHubRepoList</string>
+
+    <!-- region common -->
+
+    <string name="common_error">Error</string>
+
+    <!-- endregion -->
+
+    <!-- region ui -->
+    <string name="user_name_text">Username</string>
+    <string name="submit_text">Submit</string>
+    <string name="home_text">Home</string>
+    <!-- endregion -->
+
+</resources>

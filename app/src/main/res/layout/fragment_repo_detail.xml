@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.adesso.ghrepolist.scene.repodetail.RepoDetailViewModel" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/repo_list_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:gravity="center_vertical"
+            android:background="@color/design_default_color_primary">
+
+            <Button
+                android:id="@+id/toolbar_back_button"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/size_toolbar_button"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:onClick="@{() -> viewModel.onBackIconPressed()}"
+                android:text="back"/>
+
+            <TextView
+                style="@style/BoldText.White.Large"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="2"
+                android:layout_toEndOf="@+id/toolbar_back_button"
+                android:layout_toStartOf="@+id/toolbar_favorite_button"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:gravity="center"
+                android:text="@{viewModel.gitHubRepoModelItem.repoName}"
+                tools:text="Example Repository"/>
+
+            <Button
+                android:id="@+id/toolbar_favorite_button"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/size_toolbar_button"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:text="fav"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_extra_large"
+            android:layout_marginEnd="@dimen/margin_extra_large">
+
+            <ImageView
+                android:id="@+id/repo_detail_main_image_view"
+                android:layout_width="@dimen/size_repo_detail_image"
+                android:layout_height="@dimen/size_repo_detail_image"
+                android:layout_marginTop="@dimen/margin_extra_large"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                app:imageFromUrl="@{viewModel.gitHubRepoModelItem.repoOwner.avatarUrl}"/>
+
+            <TextView
+                style="@style/BlackText.ExtraLarge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_medium"
+                android:layout_toEndOf="@+id/repo_detail_main_image_view"
+                android:layout_alignTop="@+id/repo_detail_main_image_view"
+                android:text="@{viewModel.gitHubRepoModelItem.repoOwner.userName}"
+                tools:text="Git Hub Repo Detail"/>
+
+            <TextView
+                android:id="@+id/repo_detail_star_count_text_view"
+                style="@style/BlackText.Large"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:layout_below="@+id/repo_detail_main_image_view"
+                android:layout_alignParentStart="true"
+                android:text="@{viewModel.gitHubRepoModelItem.starCountText}"
+                tools:text="Stars: "/>
+
+            <TextView
+                style="@style/BlackText.Large"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/repo_detail_star_count_text_view"
+                android:text="@{viewModel.gitHubRepoModelItem.openIssuesText}"
+                tools:text="Open Issues: "/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</layout>

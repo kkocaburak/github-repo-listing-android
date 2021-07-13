@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="margin_xx_small">2dp</dimen>
+    <dimen name="margin_x_small">4dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_medium">12dp</dimen>
+    <dimen name="margin_large">16dp</dimen>
+    <dimen name="margin_extra_large">24dp</dimen>
+
+    <dimen name="radius_small">8dp</dimen>
+
+    <dimen name="elevation_x_small">4dp</dimen>
+    <dimen name="elevation_small">8dp</dimen>
+
+    <dimen name="height_toolbar">56dp</dimen>
+
+    <dimen name="size_favorite_button">60dp</dimen>
+    <dimen name="size_repo_detail_image">160dp</dimen>
+    <dimen name="size_toolbar_button">48dp</dimen>
+
+    <dimen name="text_size_large">20sp</dimen>
+    <dimen name="text_size_extra_large">24sp</dimen>
+
+</resources>
