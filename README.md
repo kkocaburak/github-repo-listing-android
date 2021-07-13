@@ -1,5 +1,5 @@
 # Git Hub Repository List Application
-Git Hub Repository List Application is a simple MVVM pattern application with Single Activity. This application represents simple git hub application with repository list and repository detail screens.
+Git Hub Repository List Application is a simple MVVM pattern application with Single Activity. This application represents simple git hub application with repository list and repository detail screens. ## You can see detailed presentation pdf in "project presentation" folder.
 
 <img src="/images/main-screen.png" width="240"> | <img src="/images/main-screen-with-list.png" width="240"> | <img src="/images/detail-screen.png" width="240">
 
