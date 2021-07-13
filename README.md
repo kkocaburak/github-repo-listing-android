@@ -24,6 +24,11 @@ Git Hub Repository List Application is a simple MVVM pattern application with Si
 
 <img src="/images/architecture-diagram.png" width="320" height="460"> | <img src="/images/project-folder-structure.png" width="320" height="460">
 
+## Unit Test
+One of the benefits of using MVVM design pattern is unit testing. With single responsibility classes we can easily create unit test class. In the project, we have example unit test classes for viewmodel, usecase, repository etc. 
+
+"mockK" library used for mocking data. 
+
 ## License
 
 Copyright 2020 adesso Turkey
