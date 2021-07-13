@@ -21,7 +21,7 @@ Git Hub Repository List Application is a simple MVVM pattern application with Si
 - MVVM Pattern
 - Clean Code
 
-<img src="/images/architecture-diagram.png" width="320" gravity=center> | <img src="/images/project-folder-structure.png" width="320" gravity=center>
+<img src="/images/architecture-diagram.png" width="320" height="600"> | <img src="/images/project-folder-structure.png" width="320" height="600">
 
 ## License
 
