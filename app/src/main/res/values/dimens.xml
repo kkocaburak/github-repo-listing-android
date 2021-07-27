@@ -8,11 +8,17 @@
     <dimen name="margin_large">16dp</dimen>
     <dimen name="margin_extra_large">24dp</dimen>
 
+    <dimen name="padding_small">12dp</dimen>
+
     <dimen name="radius_small">8dp</dimen>
 
     <dimen name="elevation_x_small">4dp</dimen>
     <dimen name="elevation_small">8dp</dimen>
+    <dimen name="elevation_medium">12dp</dimen>
+    <dimen name="elevation_large">24dp</dimen>
+    <dimen name="elevation_card_max">6dp</dimen>
 
+    <dimen name="height_card_view_min">60dp</dimen>
     <dimen name="height_toolbar">56dp</dimen>
 
     <dimen name="size_favorite_button">60dp</dimen>

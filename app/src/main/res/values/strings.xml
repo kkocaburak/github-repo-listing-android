@@ -11,6 +11,7 @@
     <string name="user_name_text">Username</string>
     <string name="submit_text">Submit</string>
     <string name="home_text">Home</string>
+    <string name="favorite">favorite</string>
     <!-- endregion -->
 
 </resources>

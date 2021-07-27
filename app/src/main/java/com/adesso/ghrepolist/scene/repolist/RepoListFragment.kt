@@ -1,6 +1,5 @@
 package com.adesso.ghrepolist.scene.repolist
 
-import androidx.appcompat.app.AppCompatActivity
 import com.adesso.ghrepolist.R
 import com.adesso.ghrepolist.base.BaseFragment
 import com.adesso.ghrepolist.databinding.FragmentRepoListBinding
