@@ -20,7 +20,11 @@ abstract class BaseAndroidViewModel(application: Application) : AndroidViewModel
     private val _navigation = MutableLiveData<Event<NavigationCommand>>()
     val navigation: LiveData<Event<NavigationCommand>> get() = _navigation
 
+    private val _loading = MutableLiveData<Boolean>()
+    val loading: LiveData<Boolean> get() = _loading
+
     protected open fun handleFailure(failure: Failure) {
+        hideProgress()
         val message = failure.localizedMessage ?: getString(R.string.common_error)
         navigate(PopupModel(message = message))
     }
@@ -35,6 +39,14 @@ abstract class BaseAndroidViewModel(application: Application) : AndroidViewModel
 
     fun navigateBack() {
         _navigation.value = Event(NavigationCommand.Back)
+    }
+
+    fun showProgress() {
+        _loading.value = true
+    }
+
+    fun hideProgress() {
+        _loading.value = false
     }
 
     private fun getString(@StringRes resId: Int): String {

@@ -3,8 +3,6 @@ package com.adesso.ghrepolist.scene.main
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.MenuItem
-import androidx.core.net.toUri
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.adesso.ghrepolist.R
