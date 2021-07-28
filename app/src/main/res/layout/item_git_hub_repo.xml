@@ -17,35 +17,45 @@
 
     </data>
 
-    <LinearLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="60dp"
-        android:layout_marginBottom="@dimen/margin_xx_small"
-        android:background="@drawable/border_black"
-        android:orientation="horizontal"
-        android:onClick="@{() -> listener.onRepoItemClick(gitHubRepo)}">
+        android:layout_margin="@dimen/margin_x_small"
+        app:cardBackgroundColor="@color/whitish_blue"
+        app:cardCornerRadius="@dimen/radius_small"
+        app:cardElevation="@dimen/elevation_x_small"
+        app:cardMaxElevation="@dimen/elevation_card_max">
 
-        <TextView
-            style="@style/BlackText.Large"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:lines="1"
-            android:layout_marginStart="@dimen/margin_small"
-            android:layout_marginEnd="@dimen/margin_extra_large"
-            android:text="@{gitHubRepo.repoName}"
-            android:gravity="center_vertical"
-            android:layout_gravity="center_vertical"
-            tools:text="Repo Name"/>
+            android:minHeight="@dimen/height_card_view_min"
+            android:orientation="horizontal"
+            android:onClick="@{() -> listener.onRepoItemClick(gitHubRepo)}">
 
-        <Button
-            android:layout_width="@dimen/size_favorite_button"
-            android:layout_height="@dimen/size_favorite_button"
-            android:visibility="@{gitHubRepo.isFavorite() ? View.VISIBLE : View.GONE}"
-            android:onClick="@{() -> listener.onFavoriteButtonClick(gitHubRepo)}"
-            android:gravity="center_vertical"/>
+            <TextView
+                style="@style/BlackText.Large"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:lines="1"
+                android:layout_marginStart="@dimen/margin_small"
+                android:layout_marginEnd="@dimen/margin_extra_large"
+                android:text="@{gitHubRepo.repoName}"
+                android:gravity="center_vertical"
+                android:layout_gravity="center_vertical"
+                tools:text="Repo Name"/>
 
-    </LinearLayout>
+            <Button
+                android:layout_width="@dimen/size_favorite_button"
+                android:layout_height="@dimen/size_favorite_button"
+                android:layout_marginEnd="@dimen/margin_x_small"
+                android:visibility="@{gitHubRepo.isFavorite() ? View.VISIBLE : View.GONE}"
+                android:onClick="@{() -> listener.onFavoriteButtonClick(gitHubRepo)}"
+                android:gravity="center_vertical"/>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
 
 </layout>

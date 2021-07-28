@@ -4,18 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.IdRes
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.FragmentNavigator
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.navGraphViewModels
 import com.adesso.ghrepolist.BR
 import com.adesso.ghrepolist.internal.extension.observeNonNull
 import com.adesso.ghrepolist.internal.extension.showPopup
@@ -31,6 +26,8 @@ abstract class BaseFragment<VM : BaseAndroidViewModel, B : ViewDataBinding> :
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     protected lateinit var binder: B
+
+    private var parentActivity: BaseActivity<*>? = null
 
     @Suppress("UNCHECKED_CAST")
     val viewModel by lazyThreadSafetyNone {
@@ -65,12 +62,15 @@ abstract class BaseFragment<VM : BaseAndroidViewModel, B : ViewDataBinding> :
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        parentActivity = activity as? BaseActivity<*>
+        parentActivity?.initializeActivity()
         startObservers()
     }
 
     private fun startObservers() {
         observeNavigation()
         observeFailure()
+        observeLoading()
     }
 
     private fun observeNavigation() {
@@ -99,6 +99,16 @@ abstract class BaseFragment<VM : BaseAndroidViewModel, B : ViewDataBinding> :
         viewModel.failurePopup.observeNonNull(this.viewLifecycleOwner) {
             it.getContentIfNotHandled()?.let { popupUiModel ->
                 context?.showPopup(popupUiModel)
+            }
+        }
+    }
+
+    private fun observeLoading() {
+        viewModel.loading.observeNonNull(this.viewLifecycleOwner) { isLoading ->
+            if (isLoading) {
+                parentActivity?.showProgress()
+            } else {
+                parentActivity?.hideProgress()
             }
         }
     }
