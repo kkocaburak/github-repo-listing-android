@@ -6,6 +6,7 @@ import androidx.navigation.fragment.navArgs
 import com.adesso.ghrepolist.R
 import com.adesso.ghrepolist.base.BaseFragment
 import com.adesso.ghrepolist.databinding.FragmentRepoDetailBinding
+import com.adesso.ghrepolist.internal.popup.PopupModel
 import com.google.android.material.appbar.MaterialToolbar
 
 class RepoDetailFragment :
@@ -34,7 +35,9 @@ class RepoDetailFragment :
             toolbar.setOnMenuItemClickListener { menuItem ->
                 when (menuItem.itemId) {
                     R.id.favorite -> {
-                        // on favorite icon pressed
+                        viewModel.showFavoriteInteractionPopup(
+                            getString(R.string.favorite_title), getString(R.string.favorite_interaction)
+                        )
                         true
                     }
                     else -> false

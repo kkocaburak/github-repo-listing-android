@@ -14,8 +14,8 @@ import com.adesso.ghrepolist.navigation.NavigationCommand
 
 abstract class BaseAndroidViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val _failurePopup = MutableLiveData<Event<PopupModel>>()
-    val failurePopup: LiveData<Event<PopupModel>> get() = _failurePopup
+    private val _infoPopup = MutableLiveData<Event<PopupModel>>()
+    val infoPopup: LiveData<Event<PopupModel>> get() = _infoPopup
 
     private val _navigation = MutableLiveData<Event<NavigationCommand>>()
     val navigation: LiveData<Event<NavigationCommand>> get() = _navigation
@@ -34,7 +34,7 @@ abstract class BaseAndroidViewModel(application: Application) : AndroidViewModel
     }
 
     fun navigate(popupModel: PopupModel) {
-        _failurePopup.value = Event(popupModel)
+        _infoPopup.value = Event(popupModel)
     }
 
     fun navigateBack() {
