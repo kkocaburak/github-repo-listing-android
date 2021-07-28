@@ -96,7 +96,7 @@ abstract class BaseFragment<VM : BaseAndroidViewModel, B : ViewDataBinding> :
     }
 
     private fun observeFailure() {
-        viewModel.failurePopup.observeNonNull(this.viewLifecycleOwner) {
+        viewModel.infoPopup.observeNonNull(this.viewLifecycleOwner) {
             it.getContentIfNotHandled()?.let { popupUiModel ->
                 context?.showPopup(popupUiModel)
             }
