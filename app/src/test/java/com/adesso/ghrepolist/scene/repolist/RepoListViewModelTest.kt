@@ -1,27 +1,22 @@
 package com.adesso.ghrepolist.scene.repolist
 
 import android.app.Application
-import android.os.Build
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.test.core.app.ApplicationProvider
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.adesso.ghrepolist.data.remote.model.GitHubRepoModelItem
 import com.adesso.ghrepolist.data.remote.model.RepoOwnerModel
 import com.adesso.ghrepolist.domain.FetchGitHubRepoUseCase
-import com.adesso.ghrepolist.internal.popup.PopupModel
 import com.adesso.ghrepolist.internal.util.functional.Either
 import io.mockk.*
 import io.mockk.impl.annotations.MockK
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
-import org.junit.Assert
-import org.junit.Before
-import org.junit.Rule
-import org.junit.Test
-import org.junit.runner.RunWith
-import org.robolectric.annotation.Config
+import kotlinx.coroutines.test.TestCoroutineDispatcher
+import kotlinx.coroutines.test.resetMain
+import kotlinx.coroutines.test.setMain
+import org.junit.*
 
-@Config(sdk = [Build.VERSION_CODES.O_MR1])
-@RunWith(AndroidJUnit4::class)
+@ExperimentalCoroutinesApi
 class RepoListViewModelTest {
 
     @get:Rule
@@ -29,19 +24,28 @@ class RepoListViewModelTest {
 
     @MockK
     lateinit var fetchGitHubRepoUseCase: FetchGitHubRepoUseCase
-    lateinit var repoListViewModel: RepoListViewModel
+
+    @MockK
     private lateinit var application: Application
+
+    lateinit var repoListViewModel: RepoListViewModel
+
+    private val dispatcher = TestCoroutineDispatcher()
 
     @Before
     fun setUp() {
+        Dispatchers.setMain(dispatcher)
         MockKAnnotations.init(this, relaxUnitFun = true)
-        application = ApplicationProvider.getApplicationContext() as Application
         this.repoListViewModel = RepoListViewModel(application, fetchGitHubRepoUseCase)
+    }
+    @After
+    fun tearDown() {
+        Dispatchers.resetMain()
     }
 
     @Test
     fun `when onSubmitButtonClicked should call fetchGitHubRepoList`() = runBlocking {
-        val list = listOf(
+        val expected = listOf(
                 GitHubRepoModelItem(
                         "repo1",
                         RepoOwnerModel("user1", "userUrl1"),
@@ -53,12 +57,14 @@ class RepoListViewModelTest {
 
         coEvery {
             fetchGitHubRepoUseCase.run(any())
-        } returns Either.Success(list)
+        } returns Either.Success(expected)
 
         repoListViewModel.userName = "asd"
         repoListViewModel.onSubmitButtonClicked()
 
-        coVerify { repoListViewModel.fetchGitHubRepoList("asd") }
+        val actual = repoListViewModel.repoModelItemList.value
+
+        Assert.assertEquals(expected,actual)
     }
 
 }
