@@ -26,16 +26,14 @@ class RepoListViewModel @Inject constructor(
         fetchGitHubRepoList(userName)
     }
 
-    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
-    internal fun fetchGitHubRepoList(userName: String) = viewModelScope.launch {
+    private fun fetchGitHubRepoList(userName: String) = viewModelScope.launch {
         showProgress()
         fetchGitHubRepoUseCase
             .run(FetchGitHubRepoUseCase.Params(userName))
             .either(::handleFailure, ::postGitHubRepoList)
     }
 
-    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
-    internal fun postGitHubRepoList(gitHubRepoList: List<GitHubRepoModelItem>) {
+    private fun postGitHubRepoList(gitHubRepoList: List<GitHubRepoModelItem>) {
         hideProgress()
         _repoModelList.value = gitHubRepoList
     }
