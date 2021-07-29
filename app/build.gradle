@@ -149,7 +149,6 @@ dependencies {
     testImplementation "junit:junit:$version.jUnit"
     testImplementation "androidx.arch.core:core-testing:$version.arcCoreTesting"
     testImplementation "androidx.test:core:$version.testCore"
-    testImplementation "org.robolectric:robolectric:$version.robolectric"
     testImplementation "androidx.test.ext:junit:$version.testExtJunit"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$version.coroutines"
     testImplementation "io.mockk:mockk:$version.mockk"
